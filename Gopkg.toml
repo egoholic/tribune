@@ -26,16 +26,24 @@
 
 
 [[constraint]]
+  name = "github.com/gorilla/mux"
+  version = "1.6.2"
+
+[[constraint]]
   name = "github.com/labstack/echo"
-  version = "3.3.7"
+  version = "3.3.8"
 
 [[constraint]]
   name = "github.com/onsi/ginkgo"
-  version = "1.6.0"
+  version = "1.7.0"
 
 [[constraint]]
   name = "github.com/onsi/gomega"
-  version = "1.4.2"
+  version = "1.4.3"
+
+[[constraint]]
+  branch = "v2"
+  name = "gopkg.in/mgo.v2"
 
 [prune]
   go-tests = true
