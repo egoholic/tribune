@@ -3,14 +3,13 @@ package main
 import (
 	"net/http"
 
-	"github.com/gorilla/mux"
+	pr "github.com/egoholic/tribune/world/domains/publishing/routing"
 	mgo "gopkg.in/mgo.v2"
 )
 
 func main() {
-	router := mux.NewRouter()
-	router.HandleFunc("/", dumbHandler)
-	http.Handle("/", router)
+	publishingRouter := pr.Router
+	http.Handle("/", publishingRouter)
 }
 
 func dumbHandler(w http.ResponseWriter, r *http.Request) {
