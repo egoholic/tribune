@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	publishingRouter := pr.Router
+	publishingRouter := pr.Build()
 	http.Handle("/", publishingRouter)
 }
 
