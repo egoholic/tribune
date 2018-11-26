@@ -21,6 +21,10 @@ func (p *Publication) Title() string {
 	return p.source.Title
 }
 
+func (p *Publication) Preview() string {
+	return p.source.Preview
+}
+
 func (p *Publication) Content() string {
 	return p.source.Content
 }
