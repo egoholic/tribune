@@ -25,8 +25,8 @@ func (p *Publication) isPersisted() bool {
 	return p.ID != nil
 }
 
-func (p *Publication) ID() bson.ObjectId {
-	return p.id
+func (p *Publication) ID() string {
+	return string(p.id)
 }
 
 func (p *Publication) Slug() string {

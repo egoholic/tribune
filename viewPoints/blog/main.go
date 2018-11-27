@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
-	pr "github.com/egoholic/tribune/world/domains/publishing/routing"
+	rr "github.com/egoholic/tribune/world/domains/reading/routing"
 )
 
 func main() {
-	publishingRouter := pr.Build()
-	http.Handle("/", publishingRouter)
+	readingRouter := rr.Build()
+	http.Handle("/", readingRouter)
 }
