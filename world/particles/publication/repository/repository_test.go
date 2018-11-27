@@ -1,8 +1,8 @@
-package queries_test
+package repository_test
 
 import (
 	"github.com/egoholic/tribune/world/particles/publication/persistence"
-	. "github.com/egoholic/tribune/world/particles/publication/queries"
+	. "github.com/egoholic/tribune/world/particles/publication/repository"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
