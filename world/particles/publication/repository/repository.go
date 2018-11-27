@@ -6,6 +6,7 @@ import (
 
 	"github.com/egoholic/tribune/world/particles/publication/persistence"
 	mgo "gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Repository struct {
@@ -16,28 +17,23 @@ func Make(c *mgo.Collection) *Repository {
 	return &Repository{c}
 }
 
-func (r *Repository) Latest10() [10]*persistence.Publication {
-	latest := [10]*persistence.Publication{}
-	data, ok := r.collection.([]*persistence.Publication)
-	if ok {
-		for i, p := range data {
-			latest[9-i] = p
-		}
-	}
+func (r *Repository) LatestPublished() *persistence.Publication {
+	latest := &persistence.Publication{}
+	r.collection.Find(nil).Sort("publishedAt").Limit(1).One(latest)
 
 	return latest
 }
 
+func (r *Repository) LatestPublished10() []*persistence.Publication {
+	latestPublished10 := make([]*persistence.Publication, 10)
+	r.collection.Find(nil).Sort("publishedAt").Limit(10).All(&latestPublished10)
+
+	return latestPublished10
+}
+
 func (r *Repository) BySlug(slug string) (*persistence.Publication, error) {
-	data, ok := ds.DataStore.([]*persistence.Publication)
-	if ok {
-		for i := 0; i < len(data); i++ {
-			p := dataStoreMock[i]
-			if p.Slug == slug {
-				return p, nil
-			}
-		}
-	}
+	publication := &persistence.Publication{}
+	r.collection.Find(bson.M{"slug": slug}).Limit(1).One(publication)
 
 	return nil, errors.New(fmt.Sprintf("Publication with slug = `%s` is not found!", slug))
 }
