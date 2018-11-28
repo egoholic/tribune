@@ -10,14 +10,22 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var publication = entity.Build("slug", "title", "preview", "content", "rawContent", "publishedAt", "createdAt")
-var view = html.Build(publication)
-
-var titleApplicator = func(sb *strings.Builder) error {
-	sb.WriteString("Some Awesome Page Title")
-	return nil
-}
-var contentApplicator = view.AddFullPresentationTo
+var (
+	slug            = "slug"
+	title           = "title"
+	preview         = "preview"
+	content         = "content"
+	rawContent      = "rawContent"
+	publishedAt     = "publishedAt"
+	createdAt       = "createdAt"
+	publication     = entity.Build(&slug, &title, &preview, &content, &rawContent, &publishedAt, &createdAt)
+	view            = html.Build(publication)
+	titleApplicator = func(sb *strings.Builder) error {
+		sb.WriteString("Some Awesome Page Title")
+		return nil
+	}
+	contentApplicator = view.AddFullPresentationTo
+)
 
 var _ = Describe("ViewPoints.Blog.View.Layouts.Blog", func() {
 	Describe("Build()", func() {

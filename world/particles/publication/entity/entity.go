@@ -8,12 +8,12 @@ type Publication struct {
 	source *persistence.Publication
 }
 
-func BuildByWrap(source *persistence.Publication) *Publication {
+func Wrap(source *persistence.Publication) *Publication {
 	return &Publication{source}
 }
 
-func Build(slug, title, preview, content, rawContent, publishedAt, createdAt string) *Publication {
-	source := persistence.Build(nil, slug, title, preview, content, rawContent, publishedAt, createdAt)
+func Build(slug, title, preview, content, rawContent, publishedAt, createdAt *string) *Publication {
+	source := persistence.Build(slug, title, preview, content, rawContent, publishedAt, createdAt)
 	return &Publication{source}
 }
 

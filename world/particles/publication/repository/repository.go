@@ -38,11 +38,17 @@ func (r *Repository) BySlug(slug string) (*persistence.Publication, error) {
 	return nil, errors.New(fmt.Sprintf("Publication with slug = `%s` is not found!", slug))
 }
 
-func initMongoDBSession() *mgo.Session {
+// TODO: replace with config and DI
+func MongoDBSession() *mgo.Session {
 	session, err := mgo.Dial("127.0.0.1:27017")
 	if err != nil {
 		panic(err)
 	}
 	session.SetMode(mgo.Monotonic, true)
 	return session
+}
+
+// TODO: replace with config and DI
+func CollectionFrom(s *mgo.Session) *mgo.Collection {
+	return s.DB("blog").C("publications")
 }
