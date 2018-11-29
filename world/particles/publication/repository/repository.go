@@ -17,6 +17,10 @@ func Make(c *mgo.Collection) *Repository {
 	return &Repository{c}
 }
 
+func (r *Repository) Persist(p *persistence.Publication) error {
+	return r.collection.Insert(&p)
+}
+
 func (r *Repository) LatestPublished() *persistence.Publication {
 	latest := &persistence.Publication{}
 	r.collection.Find(nil).Sort("publishedAt").Limit(1).One(latest)
@@ -24,11 +28,10 @@ func (r *Repository) LatestPublished() *persistence.Publication {
 	return latest
 }
 
-func (r *Repository) LatestPublished10() []*persistence.Publication {
-	latestPublished10 := make([]*persistence.Publication, 10)
+func (r *Repository) LatestPublished10() *[]persistence.Publication {
+	latestPublished10 := make([]persistence.Publication, 10)
 	r.collection.Find(nil).Sort("publishedAt").Limit(10).All(&latestPublished10)
-
-	return latestPublished10
+	return &latestPublished10
 }
 
 func (r *Repository) BySlug(slug string) (*persistence.Publication, error) {
