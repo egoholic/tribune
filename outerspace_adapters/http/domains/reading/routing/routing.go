@@ -1,7 +1,7 @@
 package routing
 
 import (
-	"github.com/egoholic/tribune/space/domains/reading/handlers"
+	"github.com/egoholic/tribune/outerspace_adapters/http/domains/reading/handlers"
 	"github.com/gorilla/mux"
 )
 
