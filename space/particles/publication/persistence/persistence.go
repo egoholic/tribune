@@ -1,20 +1,18 @@
 package persistence
 
-import "gopkg.in/mgo.v2/bson"
-
 type Publication struct {
-	id          bson.ObjectId `bson:"_id"`
-	slug        string        `bson:"slug"`
-	title       string        `bson:"title"`
-	preview     string        `bson:"preview"`
-	content     string        `bson:"content"`
-	rawContent  string        `bson:"rawContent"`
-	publishedAt string        `bson:"publishedAt"`
-	createdAt   string        `bson:"createdAt"`
+	id          string `bson:"_id"`
+	slug        string `bson:"slug"`
+	title       string `bson:"title"`
+	preview     string `bson:"preview"`
+	content     string `bson:"content"`
+	rawContent  string `bson:"rawContent"`
+	publishedAt string `bson:"publishedAt"`
+	createdAt   string `bson:"createdAt"`
 }
 
 func Build(slug, title, preview, content, rawContent, publishedAt, createdAt *string) *Publication {
-	return &Publication{bson.NewObjectId(), *slug, *title, *preview, *content, *rawContent, *publishedAt, *createdAt}
+	return &Publication{"id", *slug, *title, *preview, *content, *rawContent, *publishedAt, *createdAt}
 }
 
 func (p *Publication) ID() string {
