@@ -1,10 +1,12 @@
 package repository
 
 import (
+	"context"
 	"errors"
 	"fmt"
 
 	"github.com/egoholic/tribune/space/particles/publication/persistence"
+	"github.com/mongodb/mongo-go-driver/bson"
 	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
@@ -17,11 +19,12 @@ func Make(c *mongo.Collection) *Repository {
 }
 
 func (r *Repository) Persist(p *persistence.Publication) error {
+
 }
 
 func (r *Repository) LatestPublished() *persistence.Publication {
 	latest := &persistence.Publication{}
-
+	r.collection.FindOne(context.TODO(), bson.M{})
 	return latest
 }
 
