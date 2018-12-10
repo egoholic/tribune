@@ -7,5 +7,5 @@ import (
 
 type Entity interface {
 	validation.Validable
-	props.PropIterable
+	props.PropOwner
 }

@@ -1,17 +1,21 @@
 package props
 
-// N is for "Name"
-type N string
+import (
+	"github.com/egoholic/tribune/framework/validation"
+)
 
-// V is for "Value"
-type V interface{}
+type Name string
+type Value interface{}
 
-type PropReader interface {
-	ReadProp(N) V
+type Prop interface {
+	Name() string
+	Read() interface{}
+	Write(interface{}) validation.ValidationResult
 }
 
-type PropWriter interface {
-	WriteProp(N, V) error
+type PropOwner interface {
+	Props() map[string]Prop
+	Prop(string) Prop
 }
 
 type PropIterable interface {
@@ -19,5 +23,5 @@ type PropIterable interface {
 }
 
 type PropIterator interface {
-	NextNV() (N, V)
+	Next() Prop
 }

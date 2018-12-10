@@ -9,12 +9,13 @@ type Actor struct {
 func (a *Actor) Run() {
 	go func() {
 		var m interface{}
-
-		select {
-		case m = <-a.messageChannel:
-			a.function(m)
-		case <-a.finalizingChannel:
-			return
+		for {
+			select {
+			case m = <-a.messageChannel:
+				a.function(m)
+			case <-a.finalizingChannel:
+				return
+			}
 		}
 	}()
 }
