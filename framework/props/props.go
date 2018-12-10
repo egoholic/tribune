@@ -4,9 +4,6 @@ import (
 	"github.com/egoholic/tribune/framework/validation"
 )
 
-type Name string
-type Value interface{}
-
 type Prop interface {
 	Name() string
 	Read() interface{}
@@ -16,12 +13,4 @@ type Prop interface {
 type PropOwner interface {
 	Props() map[string]Prop
 	Prop(string) Prop
-}
-
-type PropIterable interface {
-	PropIterator() PropIterator
-}
-
-type PropIterator interface {
-	Next() Prop
 }

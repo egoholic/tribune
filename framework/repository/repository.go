@@ -17,6 +17,10 @@ type QueryForCountOwner interface {
 	Count(string) int
 }
 
+type QueryForExistenceOwner interface {
+	IsExsisting(string) bool
+}
+
 type Persister interface {
 	Persist(p *entity.Entity) error
 }

@@ -1,24 +1,13 @@
 package association
 
-type Associable interface {
-	IsIterable() bool
-	Value() interface{}
+type Pairwise interface {
+	Left() interface{}
+	Right() interface{}
 }
 
-type Association struct {
-	Name       string
-	Left       Associable
-	Right      Associable
-	leftHooks  map[string]hook
-	rightHooks map[string]hook
-}
-
-type hook func(Associable, Associable) bool
-
-func (a *Association) LeftHook(k string) bool {
-	return a.leftHooks[k](a.Left, a.Right)
-}
-
-func (a *Association) RightHook(k string) bool {
-	return a.leftHooks[k](a.Left, a.Right)
+type Association interface {
+	Add(Pairwise)
+	Name() string
+	LMap(interface{}) interface{}
+	RMap(interface{}) interface{}
 }

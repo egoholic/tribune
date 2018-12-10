@@ -1,22 +1,31 @@
 package entity
 
 import (
-	"github.com/egoholic/tribune/framework"
-	"github.com/egoholic/tribune/space/particles/publication/persistence"
+	"github.com/egoholic/tribune/framework/props"
+	"github.com/egoholic/tribune/framework/validation"
 )
 
 type Publication struct {
-	persisted_attributes     AttributesSet
-	not_persisted_attributes AttributesSet
+	props map[string]props.Prop
 }
 
-type AttributesSet map[string]interface{}
-
-func Wrap(source *framework.Persistence) *Publication {
-	return &Publication{source}
+type ValidationError struct {
+	root *validation.ValidationNode
 }
 
-func Build(slug, title, preview, content, rawContent, publishedAt, createdAt *string) *Publication {
-	source := persistence.Build(slug, title, preview, content, rawContent, publishedAt, createdAt)
-	return &Publication{source}
+func (p *Publication) Props() map[string]props.Prop {
+	return p.props
+}
+
+func (p *Publication) Prop(name string) props.Prop {
+	return p.props[name]
+}
+
+func (p *Publication) Validate() ValidationError {
+	node := validation.N("content")
+	return ValidationError{&node}
+}
+
+func (ve *ValidationError) IsValid() bool {
+	return ve.root.IsValid()
 }
