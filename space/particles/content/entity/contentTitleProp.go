@@ -4,17 +4,17 @@ import (
 	. "github.com/egoholic/tribune/framework/validation"
 )
 
-type cTitle struct{ value string }
+type ContentTitle struct{ value string }
 
-func (t *cTitle) Name() string {
+func (t *ContentTitle) Name() string {
 	return "Title"
 }
 
-func (t *cTitle) Read() interface{} {
+func (t *ContentTitle) Read() interface{} {
 	return t.value
 }
 
-func (t *cTitle) Write(v interface{}) ValidationResult {
+func (t *ContentTitle) Write(v interface{}) ValidationResult {
 	t.value = v.(string)
 	node := N(t.Name())
 	return &ValidationError{&node}
