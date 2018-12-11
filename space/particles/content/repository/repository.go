@@ -1,40 +1,16 @@
 package repository
 
 import (
-	"context"
-	"errors"
-	"fmt"
-
-	"github.com/egoholic/tribune/space/particles/publication/persistence"
-	"github.com/mongodb/mongo-go-driver/bson"
-	"github.com/mongodb/mongo-go-driver/mongo"
+	"github.com/egoholic/tribune/framework/entity"
+	. "github.com/egoholic/tribune/framework/repository"
 )
 
-type Repository struct {
-	collection *mongo.Collection
-}
+type Repository struct{}
 
-func Make(c *mongo.Collection) *Repository {
-	return &Repository{c}
-}
-
-func (r *Repository) Persist(p *persistence.Publication) error {
+func One(qn string) entity.Entity {
 
 }
 
-func (r *Repository) LatestPublished() *persistence.Publication {
-	latest := &persistence.Publication{}
-	r.collection.FindOne(context.TODO(), bson.M{})
-	return latest
-}
-
-func (r *Repository) LatestPublished10() *[]persistence.Publication {
-	latestPublished10 := make([]persistence.Publication, 10)
-	return &latestPublished10
-}
-
-func (r *Repository) BySlug(slug string) (*persistence.Publication, error) {
-	publication := &persistence.Publication{}
-
-	return nil, errors.New(fmt.Sprintf("Publication with slug = `%s` is not found!", slug))
+func Many(qn string) entity.Entity {
+	
 }

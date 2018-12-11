@@ -12,5 +12,5 @@ type Prop interface {
 
 type PropOwner interface {
 	Props() map[string]Prop
-	Prop(string) Prop
+	AddProp(Prop) error
 }
