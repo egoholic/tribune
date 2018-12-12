@@ -4,7 +4,7 @@ import (
 	"time"
 
 	. "github.com/egoholic/tribune/framework/props"
-	. "github.com/egoholic/tribune/framework/validation"
+	"github.com/egoholic/tribune/framework/validation"
 	ce "github.com/egoholic/tribune/space/particles/content/entity"
 	"github.com/egoholic/tribune/space/particles/publication/entity/slugs"
 )
@@ -21,13 +21,13 @@ func (p *Publication) Name() string {
 }
 
 func New() Publication {
-	content := Content{map[string]Prop{}}
+	content := ce.New()
 	return Publication{content, map[string]Prop{}}
 }
 
-func Make(content *Content) Publication {
+func Make(content *ce.Content) Publication {
 	publication := Publication{*content, map[string]Prop{}}
-	slug := slugs.Make(content.Props()["Title"].Read())
+	slug := slugs.Make(content.Props()["Title"].Read().(string))
 	ps := PublicationSlug{slug}
 	publication.AssignProp(&ps)
 	publishedAt := time.Now()
@@ -46,7 +46,8 @@ func (p *Publication) Props() map[string]Prop {
 	return p.props
 }
 
-func (p *Publication) Validate() ValidationResult {
-	node := N(p.Name())
-	return SimpleValidationResult{&node}
+func (p *Publication) Validate() validation.ValidationResult {
+	node := validation.N(p.Name())
+	result := validation.Make(&node)
+	return &result
 }

@@ -1,5 +1,7 @@
 package entity
 
+import "github.com/egoholic/tribune/framework/validation"
+
 type PublicationSlug struct{ value string }
 
 func (p *PublicationSlug) Name() string {
@@ -10,8 +12,9 @@ func (p *PublicationSlug) Read() interface{} {
 	return p.value
 }
 
-func (p *PublicationSlug) Write(v interface{}) ValidationResult {
+func (p *PublicationSlug) Write(v interface{}) validation.ValidationResult {
 	p.value = v.(string)
-	node := N(p.Name())
-	return &ValidationError{&node}
+	node := validation.N(p.Name())
+	result := validation.Make(&node)
+	return &result
 }

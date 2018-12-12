@@ -1,7 +1,7 @@
 package entity
 
 import (
-	. "github.com/egoholic/tribune/framework/validation"
+	"github.com/egoholic/tribune/framework/validation"
 )
 
 type ContentBody struct{ value string }
@@ -14,8 +14,9 @@ func (b *ContentBody) Read() interface{} {
 	return b.value
 }
 
-func (b *ContentBody) Write(v interface{}) ValidationResult {
+func (b *ContentBody) Write(v interface{}) validation.ValidationResult {
 	b.value = v.(string)
-	node := N(b.Name())
-	return &ValidationError{&node}
+	node := validation.N(b.Name())
+	result := validation.Make(&node)
+	return &result
 }

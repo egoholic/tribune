@@ -10,7 +10,7 @@ func Make(node *ValidationNode) SimpleValidationResult {
 }
 
 func (ve *SimpleValidationResult) IsValid() bool {
-	return ve.root.IsValid()
+	return (*ve).root.IsValid()
 }
 
 func (ve *SimpleValidationResult) Nodes() ValidationNode {

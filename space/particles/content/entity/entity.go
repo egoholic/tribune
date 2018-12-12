@@ -2,7 +2,7 @@ package entity
 
 import (
 	. "github.com/egoholic/tribune/framework/props"
-	. "github.com/egoholic/tribune/framework/validation"
+	"github.com/egoholic/tribune/framework/validation"
 )
 
 type Content struct {
@@ -38,7 +38,8 @@ func (c *Content) Props() map[string]Prop {
 	return c.props
 }
 
-func (c *Content) Validate() ValidationResult {
-	node := N(c.Name())
-	return SimpleValidationResult{&node}
+func (c *Content) Validate() validation.ValidationResult {
+	node := validation.N(c.Name())
+	result := validation.Make(&node)
+	return &result
 }
