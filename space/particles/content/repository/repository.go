@@ -5,12 +5,14 @@ import (
 	. "github.com/egoholic/tribune/framework/repository"
 )
 
-type Repository struct{}
+type Repository struct {
+	queries map[string]interface{}
+}
 
 func One(qn string) entity.Entity {
 
 }
 
 func Many(qn string) entity.Entity {
-	
+
 }

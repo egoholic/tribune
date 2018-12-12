@@ -5,6 +5,15 @@ import (
 	"github.com/egoholic/tribune/framework/entity"
 )
 
+type Query interface {
+	Exec(map[string]interface{})
+}
+
+type QueriesOwner interface {
+	Queries() map[string]Query
+	AssignQuery(Query) bool
+}
+
 type QueryForOneOwner interface {
 	One(string) entity.Entity
 }
