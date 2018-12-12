@@ -8,14 +8,6 @@ type Repository struct {
 	queries map[string]interface{}
 }
 
-// func One(qn string) entity.Entity {
-
-// }
-
-// func Many(qn string) entity.Entity {
-
-// }
-
-func Persist(c entity.Entity) bool {
+func Persist(c *entity.Entity) bool {
 	return true
 }
