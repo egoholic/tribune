@@ -9,6 +9,12 @@ type Content struct {
 	props map[string]Prop
 }
 
+const name = "Content"
+
+func (c *Content) Name() string {
+	return name
+}
+
 func New() Content {
 	return Content{map[string]Prop{}}
 }
@@ -32,7 +38,7 @@ func (c *Content) Props() map[string]Prop {
 	return c.props
 }
 
-func (c *Content) Validate() ValidationError {
-	node := N("content")
-	return ValidationError{&node}
+func (c *Content) Validate() ValidationResult {
+	node := N(c.Name())
+	return SimpleValidationResult{&node}
 }
