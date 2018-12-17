@@ -1,4 +1,4 @@
-package props
+package prop
 
 import (
 	"github.com/egoholic/tribune/framework/validation"

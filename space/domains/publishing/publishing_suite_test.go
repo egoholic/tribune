@@ -1,4 +1,4 @@
-package html_test
+package publishing_test
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestHtml(t *testing.T) {
+func TestPublishing(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Html Suite")
+	RunSpecs(t, "Publishing Suite")
 }

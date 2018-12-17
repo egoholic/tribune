@@ -1,4 +1,4 @@
-package view_test
+package publication_test
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestView(t *testing.T) {
+func TestPublication(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "View Suite")
+	RunSpecs(t, "Publication Suite")
 }

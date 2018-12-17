@@ -1,14 +1,14 @@
-package entity_test
+package content_test
 
 import (
-	"github.com/egoholic/tribune/framework/props"
-	. "github.com/egoholic/tribune/space/particles/content/entity"
+	"github.com/egoholic/tribune/framework/prop"
+	. "github.com/egoholic/tribune/space/particle/content"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
 
 var content Content
-var _ = Describe("tribune/space/particles/content/entity", func() {
+var _ = Describe("tribune/space/particle/content/entity", func() {
 	BeforeEach(func() {
 		content = New()
 	})
@@ -40,7 +40,7 @@ var _ = Describe("tribune/space/particles/content/entity", func() {
 
 		Describe(".Props()", func() {
 			It("returns a map of props", func() {
-				pm := map[string]props.Prop{}
+				pm := map[string]prop.Prop{}
 				Expect(content.Props()).To(BeAssignableToTypeOf(pm))
 				Expect(content.Props()).To(HaveLen(0))
 				ct := ContentTitle{}

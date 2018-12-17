@@ -1,4 +1,4 @@
-package entity
+package publication
 
 import "github.com/egoholic/tribune/framework/validation"
 

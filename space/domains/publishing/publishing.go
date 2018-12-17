@@ -1,18 +1,17 @@
 package publishing
 
 import (
-	"time"
-
-	ce "github.com/egoholic/tribune/space/particles/content/entity"
-
-	pe "github.com/egoholic/tribune/space/particles/publication/entity"
-	pr "github.com/egoholic/tribune/space/particles/publication/repository"
+	"github.com/egoholic/tribune/space/particle/content"
+	"github.com/egoholic/tribune/space/particle/publication"
+	pq "github.com/egoholic/tribune/space/particle/publication/query"
 )
 
-func PublishNow(c ce.Content) pe.Publication {
-	publication := pe.Make(&c)
-	pr.Persist(&publication)
-	return publication
+func PublishNow(c *content.Content) publication.Publication {
+	p := publication.Make(c)
+	pq.Persist(&p)
+	return p
 }
 
-func PublishLater(c ce.Content, pd time.Time)
+// func PublishLater(c ce.Content, pd time.Time) {
+
+// }

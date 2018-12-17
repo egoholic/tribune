@@ -1,12 +1,12 @@
-package entity
+package content
 
 import (
-	. "github.com/egoholic/tribune/framework/props"
+	"github.com/egoholic/tribune/framework/prop"
 	"github.com/egoholic/tribune/framework/validation"
 )
 
 type Content struct {
-	props map[string]Prop
+	props map[string]prop.Prop
 }
 
 const name = "Content"
@@ -16,11 +16,11 @@ func (c *Content) Name() string {
 }
 
 func New() Content {
-	return Content{map[string]Prop{}}
+	return Content{map[string]prop.Prop{}}
 }
 
 func Make(title, body string) Content {
-	content := Content{map[string]Prop{}}
+	content := Content{map[string]prop.Prop{}}
 	ct := ContentTitle{title}
 	content.AssignProp(&ct)
 	cb := ContentBody{body}
@@ -29,12 +29,12 @@ func Make(title, body string) Content {
 	return content
 }
 
-func (c *Content) AssignProp(p Prop) error {
+func (c *Content) AssignProp(p prop.Prop) error {
 	c.props[p.Name()] = p
 	return nil
 }
 
-func (c *Content) Props() map[string]Prop {
+func (c *Content) Props() map[string]prop.Prop {
 	return c.props
 }
 
